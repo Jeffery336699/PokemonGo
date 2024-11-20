@@ -22,10 +22,10 @@ class AppInitializer : Initializer<Unit> {
         if (!BuildConfig.DEBUG) {
             return
         }
-        StrictMode.setThreadPolicy(
-            ThreadPolicy.Builder().detectAll().penaltyLog().build()
-        )
-        StrictMode.setVmPolicy(VmPolicy.Builder().detectAll().penaltyLog().build())
+        // StrictMode.setThreadPolicy(
+        //     ThreadPolicy.Builder().detectAll().penaltyLog().build()
+        // )
+        // StrictMode.setVmPolicy(VmPolicy.Builder().detectAll().penaltyLog().build())
         Timber.plant(DebugTree())
         AppHelper.init(context)
         return Unit
