@@ -32,7 +32,8 @@
                 android:layout_marginBottom="@dimen/margin_5dp"
                 android:text="ATK"
                 android:textColor="@android:color/black" />
-
+            <!--android:layout_alignBaseline 属性用于垂直对齐两个视图的基线，
+            确保在布局中相同的文本基线对齐，从而提高了布局的美观性和可读性。这在处理多个文本视图时特别有用。-->
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -26,7 +26,7 @@ data class PokemonInfoModel(
 
     fun generatetWeight(): String = "%.1f KG".format(weight.toFloat() / 10)
     fun generateHeight(): String = "%.1f M".format(height.toFloat() / 10)
-    fun generatetHP(): String = "$hp/$maxHp HP"
+    fun generatetHP(): String = "$hp/$maxHp HP - albums.size=${albums.size}"
     fun generatetAttack(): String = "$attack/$maxAttack"
     fun generatetSpeed(): String = "$speed/$maxSpeed"
     fun generatetExp(): String = "$exp/$maxExp"

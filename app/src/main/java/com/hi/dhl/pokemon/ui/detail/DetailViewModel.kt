@@ -34,6 +34,7 @@ class DetailViewModel @ViewModelInject constructor(
     private val _pokemon = MutableLiveData<PokemonInfoModel>()
 
     // 对外暴露不可变的 LiveData，只能查询
+    // todo 这里是配合databing给到xml中直接使用，但是如果UI层需要flow流动数据处理的话（fectchPokemonInfo2直接返回的是一个转好的LiveData）
     val pokemon: LiveData<PokemonInfoModel> = _pokemon
 
     private val _failure = MutableLiveData<String>()

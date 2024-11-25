@@ -114,7 +114,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressHp"
                 tools:text="Weight" />
-
+            <!--这里其他控件都设置了translationZ，相当于cardview置于它们的底部了
+            translationZ 可以用于改变视图在 Z 轴上的位置，使其在显示层次上更靠近观察者或者更远离观察者。
+            例如，如果有多个重叠的视图，设置一个视图的 translationZ 为更大的值，
+            可以使该视图在视觉上位于其他视图之上。-->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -122,6 +125,7 @@
                 android:layout_marginTop="@dimen/details_img_m_t"
                 android:layout_marginEnd="@dimen/margin_10dp"
                 android:layout_marginBottom="@dimen/margin_10dp"
+                android:visibility="visible"
                 app:cardCornerRadius="@dimen/common_radius_8dp"
                 app:cardUseCompatPadding="true" />
 

@@ -14,6 +14,7 @@ import com.hi.dhl.pokemon.databinding.FragmentDetailsBinding
 import com.hi.dhl.pokemon.model.PokemonItemModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import timber.log.Timber
 
 /**
  * <pre>
@@ -45,7 +46,10 @@ class DetailsFragment(args: String) : DataBindingFragment(R.layout.fragment_deta
             albumAdapter = mAlbumAdapter
             viewModel = mViewModel.apply {
                 fectchPokemonInfo2(mPokemonModel.name)
-                    .observe(viewLifecycleOwner, Observer {})
+                    .observe(viewLifecycleOwner, Observer {
+                        // It:PokemonInfoModel(name='bulbasaur', height=7, weight=69, experience=64)
+                        Timber.i("It:$it")
+                    })
             }
             lifecycleOwner = this@DetailsFragment
         }

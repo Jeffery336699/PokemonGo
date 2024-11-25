@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentFactory
  *     desc  :
  * </pre>
  */
-class CustomFragmentFactory() : FragmentFactory() {
+class CustomFragmentFactory : FragmentFactory() {
 
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment =
         when (className) {
