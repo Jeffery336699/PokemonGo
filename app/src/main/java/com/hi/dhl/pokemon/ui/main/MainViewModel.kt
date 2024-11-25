@@ -61,11 +61,7 @@ class MainViewModel @ViewModelInject constructor(
         // 避免在单位时间内，快输入造成大量的请求
         stateFlow.debounce(200)
             .filter { result ->
-                if (result.isEmpty()) { // 过滤掉空字符串等等无效输入
-                    return@filter false
-                } else {
-                    return@filter true
-                }
+                return@filter result.isNotEmpty()
             }
             .flatMapLatest { // 只显示最后一次搜索的结果，忽略之前的请求
                 // 网络请求，这里替换自己的实现即可

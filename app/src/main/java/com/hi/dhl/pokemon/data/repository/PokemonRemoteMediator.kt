@@ -1,6 +1,7 @@
 package com.hi.dhl.pokemon.data.repository
 
 import androidx.paging.ExperimentalPagingApi
+import androidx.paging.LoadState.Loading.endOfPaginationReached
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
@@ -55,7 +56,7 @@ class PokemonRemoteMediator(
                 // 首次访问 或者调用 PagingDataAdapter.refresh()
                 LoadType.REFRESH -> null
 
-                // 在当前加载的数据集的开头加载数据时
+                // 在当前加载的数据集的开头加载数据时 todo 这个吊毛回调通过查看日志总是跟随REFRESH、APPEND一起带一个
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
 
                 LoadType.APPEND -> { // 下来加载更多时触发
@@ -104,6 +105,7 @@ class PokemonRemoteMediator(
                 state.config.pageSize,
                 page * state.config.pageSize
             ).results
+            Timber.tag(TAG).i("page=${page},,result=${result.size}")
             Timber.tag(TAG).e(result.toString())
 
             val endOfPaginationReached = result.isEmpty()
@@ -141,8 +143,8 @@ class PokemonRemoteMediator(
     }
 
     companion object {
-        private val TAG = "PokemonRemoteMediator"
-        private val remotePokemon = "pokemon"
+        val TAG = "PokemonRemoteMediator"
+        val remotePokemon = "pokemon"
     }
 
 

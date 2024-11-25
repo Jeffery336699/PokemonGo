@@ -38,6 +38,7 @@ class PokemonRepositoryImpl(
             config = pageConfig,
             remoteMediator = PokemonRemoteMediator(api, db)
         ) {
+            // TODO: remoteMediator在生成 PagingSource的前面处理，而上述从网络获取的最终是存入数据库，所以直接从数据拿取all就行
             db.pokemonDao().getPokemon()
         }.flow.map { pagingData ->
             pagingData.map { mapper2ItemMolde.map(it) }

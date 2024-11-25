@@ -21,7 +21,7 @@ data class ListingData(
 ) {
     fun getImageUrl(): String {
         val index = url.split("/".toRegex()).dropLast(1).last()
-        return "https://pokeres.bastionbot.org/images/pokemon/$index.png"
+            return "https://pokeres.bastionbot.org/images/pokemon/$index.png"
     }
 
     override fun toString(): String {

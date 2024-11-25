@@ -8,13 +8,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.hi.dhl.jdatabinding.binding
-import com.hi.dhl.pokemon.R
+import com.hi.dhl.pokemon.data.repository.PokemonRemoteMediator
 import com.hi.dhl.pokemon.databinding.ActivityMainBinding
 import com.hi.dhl.pokemon.ui.main.footer.FooterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
+import timber.log.Timber
 
 @FlowPreview
 @ExperimentalCoroutinesApi
@@ -32,6 +33,11 @@ class MainActivity : AppCompatActivity() {
             lifecycleOwner = this@MainActivity
         }
 
+        mBinding.layoutHeader.icon.setOnClickListener {
+            /** 模拟stateFlow的形式来更新 */
+            mViewModel.queryParameterForNetWork("network search") // 网络搜索
+        }
+
         /**
          * 分为 数据库 和 网络搜索
          * 可以运行注释掉的代码，文章链接：https://juejin.cn/post/6854573220457086990
@@ -43,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         mViewModel.postOfData().observe(this, Observer {
+            Timber.tag(PokemonRemoteMediator.TAG).d("observe : $it")
+            // TODO: submitData这玩意强无敌，内部帮你做了数据diff助你更好的展示UI(说人话就是你不用是添加数据or刷新数据)
             mPokemonAdapter.submitData(lifecycle, it)
             mBinding.swiperRefresh.isEnabled = false
         })
@@ -55,12 +63,13 @@ class MainActivity : AppCompatActivity() {
 
         // 数据库搜索回调监听
         mViewModel.searchResultForDb.observe(this, Observer {
+            Timber.d("observe search : $it")
             mPokemonAdapter.submitData(lifecycle, it)
         })
 
         // 网络搜索回调监听
         mViewModel.searchResultMockNetWork.observe(this, Observer {
-//            mPokemonAdapter.submitData(lifecycle, it)
+           mPokemonAdapter.submitData(lifecycle, it)
         })
     }
 

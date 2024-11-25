@@ -1,5 +1,6 @@
 package com.hi.dhl.pokemon
 
+import android.annotation.SuppressLint
 import android.content.Context
 
 /**
@@ -9,6 +10,7 @@ import android.content.Context
  *     desc  :
  * </pre>
  */
+@SuppressLint("StaticFieldLeak")
 object AppHelper {
     lateinit var mContext: Context
 
